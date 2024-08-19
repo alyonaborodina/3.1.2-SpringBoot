@@ -8,10 +8,12 @@ import alenagupanova31.__Spring.Boot.models.User;
 
 import java.util.List;
 
+@Transactional(readOnly = true)
 @Service
 public class UserServiceImp implements UserService {
 
     private UserDao userDao;
+
 
     @Autowired
     public UserServiceImp(UserDao userDao) {
@@ -24,12 +26,13 @@ public class UserServiceImp implements UserService {
         return userDao.findAll();
     }
 
+    @Transactional
     @Override
     public User findById(Integer id) {
         return userDao.findById(id);
     }
 
-    @Transactional
+
     @Override
     public void add(User user) {
         userDao.add(user);
